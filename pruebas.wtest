@@ -1,0 +1,52 @@
+import feroz.*
+import caperucita.*
+
+
+test "feroz debora a capericita" {
+  feroz.comer(caperucita)
+    assert.equals(feroz.peso(), 16.12)
+}
+
+test "feroz debora a la abuelita" {
+  feroz.comer(abuelita)
+    assert.equals(feroz.peso(), 15)
+}
+
+test "feroz esta saludable" {
+  feroz.comer(abuelita)
+  feroz.comer(caperucita)
+    assert.equals(feroz.estaSaludable(), false)
+}
+
+test "Capericita roja(final 1/3 lobo cazado)" {
+  feroz.correr() // feroz corre hacia el bosque
+  feroz.correr() // feroz corre hacia la casa de la abuelita luego de conversar con caperucita
+  feroz.comer(abuelita) // feroz se come a la abuelita y se disfraza de ella
+  canasta.manzanasCaidas(1) // caperucita pierde una manzana en el camino
+  feroz.comer(caperucita) // caperucita llega a la casa de su abuelita y es comida por feroz luego de conversar
+  cazador.correr() // el cazador llega a la casa de la abuelita
+  cazador.cazar() // el cazador intenta cazar a feroz causandole una crisis
+  assert.that(feroz.estaSaludable()) 
+}
+
+test "Capericita roja(final 2/3 lobo come a todos)" {
+  feroz.correr() // feroz corre hacia el bosque
+  feroz.correr() // feroz corre hacia la casa de la abuelita luego de conversar con caperucita
+  feroz.comer(abuelita) // feroz se come a la abuelita y se disfraza de ella
+  canasta.manzanasCaidas(1) // caperucita pierde una manzana en el camino
+  feroz.comer(caperucita) // caperucita llega a la casa de su abuelita y es comida por feroz luego de conversar
+  cazador.correr() // el cazador llega a la casa de la abuelita
+  feroz.comer(cazador) // feroz debora al cazador antes de que pudiera reaccionar
+  assert.that(feroz.estaSaludable()) 
+}
+
+test "Capericita roja(final 3/3 lobo escapa)" {
+  feroz.correr() // feroz corre hacia el bosque
+  feroz.correr() // feroz corre hacia la casa de la abuelita luego de conversar con caperucita
+  feroz.comer(abuelita) // feroz se come a la abuelita y se disfraza de ella
+  canasta.manzanasCaidas(1) // caperucita pierde una manzana en el camino
+  feroz.comer(caperucita) // caperucita llega a la casa de su abuelita y es comida por feroz luego de conversar
+  cazador.correr() // el cazador llega a la casa de la abuelita
+  feroz.correr() // feroz escapa del cazador pero queda con hambre
+  assert.that(feroz.estaSaludable()) 
+}
